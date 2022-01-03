@@ -13,26 +13,36 @@ and in the open whenever possible. Spruce also strongly prefers to contribute
 to and support existing work items to converge efforts over starting new ones.
 
 # In Use (WIP)
-- SIWE
-- CACAO
-- W3C Verifiable Credentials
-- W3C Decentralized Identifiers
-    - did-key
-    - did-pkh (relies on CAIP-10)
-    - did-web
+- Sign-in With Ethereum ([SIWE](https://login.xyz)), specified in
+  [EIP-4361](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-4361.md)
+- Chain Agnostic Capability Object
+  ([CACAO](https://github.com/ChainAgnostic/CAIPs/blob/e8da88e75145cca5df387ffe7e8aea213bb5108f/CAIPs/caip-draft_cacao.md))
+- W3C [Verifiable Credentials](https://w3c.github.io/vc-data-model/)
+- W3C [Decentralized Identifiers](https://w3c.github.io/did-core/)
+- Specific DID Methods:
+    - [did-key](https://w3c-ccg.github.io/did-method-key/)
+    - [did-pkh](https://github.com/w3c-ccg/did-pkh/blob/main/did-pkh-method-draft.md)
+      (relies on
+      [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-10.md))
+    - [did-web](https://w3c-ccg.github.io/did-method-web/)
     - did-webkey
-- JSON Web Tokens (JWTs)
-- Linked Data Proofs (relies on RDF)
-- Authorization Capabilities (ZCAPs, including ZCAP-LD)
+- JSON Web Tokens ([JWTs](https://tools.ietf.org/html/rfc7519))
+- Linked Data Proofs ([LDP](https://w3c-ccg.github.io/ld-proofs/), which relies
+  on [RDF](https://www.w3.org/RDF)'s unique [serialization and normalization
+  algorithms](https://json-ld.org/spec/FCGS/json-ld-api/20180607/#rdf-serialization-deserialization-algorithms))
+- Object Capabilities for Authorization (ZCAPs, including
+  [ZCAP-LD](https://w3c-ccg.github.io/zcap-ld/))
 
 # Under Consideration (WIP)
-- DIF Presentation Exchange
-- DIF Identity Hubs
-- OpenID Connnect SIOPv2
+- DIF 
+  [Presentation Exchange](https://identity.foundation/presentation-exchange/)
+- DIF [Identity Hubs](https://identity.foundation/identity-hub/spec/)
+- OpenID Connect Self-Issued OpenIDConnect Provider
+  ([SIOPv2](https://openid.net/specs/openid-connect-self-issued-v2-1_0-06.html))
 
 # Open Problems
 The following problems present opportunities for standardization of some kind.
-As mentioned above, it is preferrable not to introduce a new specification
+As mentioned above, it is preferable not to introduce a new specification
 unless absolutely necessary, and work should continue under existing work items
 if reasonably possible. Focusing on problems allow more potential for holistic
 solutions to emerge versus making the decision to start a draft spec upfront.
@@ -41,11 +51,12 @@ solutions to emerge versus making the decision to start a draft spec upfront.
 Blockchain wallets that support signing are unlikely to support issuance of
 standard JWS payloads in the near future, so it is far more pragmatic to build
 new signature suites that can work with their existing outputs, such as
-EIP-191, EIP-712, or Phantom's
-[`signMessage()`](https://docs.phantom.app/integrating/signing-a-message).
-These outputs can then be embedded into a data structure (such as W3C
-Verifiable Credentials) with metadata that specify exact verification
-methods, which will typically begin with detaching the embedded output.
+[EIP-191](https://eips.ethereum.org/EIPS/eip-191),
+[EIP-712](https://eips.ethereum.org/EIPS/eip-712), or Phantom's
+[`signMessage()`](https://docs.phantom.app/integrating/signing-a-message). These
+outputs can then be embedded into a data structure (such as W3C Verifiable
+Credentials) with metadata that specify exact verification methods, which will
+typically begin with detaching the embedded output.
 
 Outside the realm of blockchain users, there are new signature schemes that do
 not have a clear fit with JWS, as evidenced by the work on JSON Web Proofs
@@ -92,12 +103,17 @@ purpose data model for verification method metadata.
 
 ### Related Work
 - [JWS-CT](https://datatracker.ietf.org/doc/html/draft-jordan-jws-ct-00) is the
-  closest draft specificaencountered so far, which uses JCS and JWS detached
-  mode to allow for an embeddable representation.
+  closest draft specification that we've encountered so far, which uses JCS and
+  JWS detached mode to allow for an embeddable representation.
 - [JWPs](https://json-web-proofs.github.io/json-web-proofs/draft-jmiller-json-web-proof.html)
-  seek to extend JWS with multiple claims.
+  seeks to extend the structure of JWS envelopes to allow for more proof-types,
+  including many of the complex proof-types used in various models of
+  "zero-knowledge" presentations of complex credentials.
 - [XML-DSIG](https://www.w3.org/TR/xmldsig-core1/) attempted to do this with
-  XML, but its rollout was marred with implementation difficulties and security bugs
-  related to flexible canonicalization. What can we do to prevent these classes of issues?
+  XML, but its rollout was marred with implementation difficulties and security
+  bugs related to flexible canonicalization. This is a crucial unsuccesful
+  precedent to keep in mind balancing flexibility against security and
+  unambiguous specification.
 - [EthereumEIP712Signature2021](https://w3c-ccg.github.io/ethereum-eip712-signature-2021-spec/)
-  defines how to, e.g., issue a W3C Verifiable Credential from an Ethereum EOA account.
+  defines how to, e.g., issue a W3C Verifiable Credential from an Ethereum EOA
+  account.
