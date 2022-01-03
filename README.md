@@ -21,9 +21,12 @@ to and support existing work items to converge efforts over starting new ones.
     - did-pkh (relies on CAIP-10)
     - did-web
     - did-webkey
+    - Additional methods supported in `ssi`/`didkit` can be found [here](https://spruceid.dev/docs/didkit/did-methods)
 - JSON Web Tokens (JWTs)
 - Linked Data Proofs (relies on RDF)
+- Additional proof types supported in `ssi`/`didkit` can be found [here](https://spruceid.dev/docs/didkit/did-methods#proof-types-verifiable-so-far)
 - Authorization Capabilities (ZCAPs, including ZCAP-LD)
+- Additional specifications, test suites, and cryptographic dependencies can be found [here](https://spruceid.dev/docs/didkit/specs_and_deps)
 
 # Under Consideration (WIP)
 - DIF Presentation Exchange
